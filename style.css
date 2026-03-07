@@ -16,15 +16,24 @@ text-align:left;
 }
 
 .user{
-color:blue;
+color:#0066ff;
 margin:5px;
 }
 
 .ai{
-color:green;
+color:#009933;
 margin:5px;
 }
 
-.input-area{
+.input{
 margin-top:10px;
+}
+
+input{
+width:400px;
+padding:8px;
+}
+
+button{
+padding:8px 15px;
 }
