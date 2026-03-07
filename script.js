@@ -2,12 +2,11 @@ const API_KEY = "AIzaSyBlaHXYxGynSSPdBQVYQL3ZvSLwSMF0o2I";
 
 const chat = document.getElementById("chat");
 
-function addMessage(text, className){
+function addMessage(text, cls){
 const div = document.createElement("div");
-div.className = className;
+div.className = cls;
 div.textContent = text;
 chat.appendChild(div);
-chat.scrollTop = chat.scrollHeight;
 }
 
 async function send(){
@@ -17,11 +16,12 @@ const text = input.value;
 
 if(!text) return;
 
-addMessage("あなた: " + text, "user");
+addMessage("あなた: " + text,"user");
+
 input.value="";
 
-const response = await fetch(
-"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=" + API_KEY,
+const res = await fetch(
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
 {
 method:"POST",
 headers:{
@@ -30,7 +30,6 @@ headers:{
 body:JSON.stringify({
 contents:[
 {
-role:"user",
 parts:[
 {
 text:`あなたは妹キャラのAIです。
@@ -38,7 +37,7 @@ text:`あなたは妹キャラのAIです。
 優しく可愛い口調で話してください。通常と比べてひらがなを多めにしてください。
 例：「ねえねえおにいちゃん！おにいちゃんといっしょにお話ししたいんだ♡いっしょにお話ししよ！」
 
-ユーザー: ${text}`
+ユーザー:${text}`
 }
 ]
 }
@@ -47,13 +46,14 @@ text:`あなたは妹キャラのAIです。
 }
 );
 
-const data = await response.json();
+const data = await res.json();
 
 console.log(data);
 
 const reply =
-data.candidates?.[0]?.content?.parts?.[0]?.text || "エラー";
+data.candidates?.[0]?.content?.parts?.[0]?.text ||
+"エラー";
 
-addMessage("AI: " + reply, "ai");
+addMessage("AI: " + reply,"ai");
 
 }
