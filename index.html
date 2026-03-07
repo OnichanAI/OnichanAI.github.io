@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>おにいちゃんAI</title>
 <meta property="og:title" content="おにいちゃんAI">
 <meta property="og:description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
@@ -18,13 +19,21 @@
 
 <body>
 
-<h1>おにいちゃんAI</h1>
+<div class="container">
 
-<div id="chat"></div>
+<h1>おにいちゃんAI</h1>
+<p class="subtitle">Powered by Workers AI</p>
+
+<div class="card">
+
+<div id="chat" class="chat"></div>
 
 <div class="input-area">
-<input id="message" placeholder="メッセージを入力">
-<button onclick="send()">送信</button>
+<input id="input" placeholder="メッセージを入力..." />
+<button id="send">送信</button>
+</div>
+
+</div>
 </div>
 
 <script src="script.js"></script>
