@@ -1,14 +1,17 @@
-const WORKER_URL = "https://snowy-moon-ea6b.takkunmcjp.workers.dev";
+const WORKER_URL = "https://snowy-moon-ea6b.takkunmcjp.workers.dev/";
 
 const chat = document.getElementById("chat");
 const input = document.getElementById("message");
 
 function addMessage(text, cls){
+
   const div = document.createElement("div");
   div.className = cls;
   div.textContent = text;
+
   chat.appendChild(div);
   chat.scrollTop = chat.scrollHeight;
+
 }
 
 async function send(){
@@ -50,10 +53,13 @@ async function send(){
     addMessage("通信エラーが発生しました","ai");
 
   }
+
 }
 
 input.addEventListener("keydown",function(e){
+
   if(e.key === "Enter"){
     send();
   }
+
 });
