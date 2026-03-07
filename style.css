@@ -1,39 +1,55 @@
 body{
 font-family:sans-serif;
-background:#f5f5f5;
+background:#f2f2f2;
 text-align:center;
+}
+
+h1{
+margin-top:20px;
 }
 
 #chat{
 width:600px;
-height:400px;
+height:420px;
 margin:auto;
 background:white;
 border-radius:10px;
-padding:10px;
+padding:15px;
 overflow-y:auto;
 text-align:left;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 .user{
-color:#0066ff;
-margin:5px;
+color:#0077ff;
+margin:6px 0;
 }
 
 .ai{
-color:#009933;
-margin:5px;
+color:#00a060;
+margin:6px 0;
 }
 
-.input{
+.input-area{
 margin-top:10px;
 }
 
 input{
-width:400px;
-padding:8px;
+width:420px;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
 }
 
 button{
-padding:8px 15px;
+padding:10px 16px;
+border:none;
+border-radius:6px;
+background:#0077ff;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#005fd1;
 }
