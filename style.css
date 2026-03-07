@@ -1,55 +1,78 @@
-body{
-font-family:sans-serif;
-background:#f2f2f2;
-text-align:center;
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f5f7fb;
 }
 
-h1{
-margin-top:20px;
+.container {
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 20px;
 }
 
-#chat{
-width:600px;
-height:420px;
-margin:auto;
-background:white;
-border-radius:10px;
-padding:15px;
-overflow-y:auto;
-text-align:left;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+h1 {
+  margin-bottom: 4px;
 }
 
-.user{
-color:#0077ff;
-margin:6px 0;
+.subtitle {
+  margin-top: 0;
+  color: #777;
 }
 
-.ai{
-color:#00a060;
-margin:6px 0;
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-.input-area{
-margin-top:10px;
+.chat {
+  height: 420px;
+  overflow-y: auto;
+  margin-bottom: 16px;
 }
 
-input{
-width:420px;
-padding:10px;
-border-radius:6px;
-border:1px solid #ccc;
+.message {
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  line-height: 1.4;
 }
 
-button{
-padding:10px 16px;
-border:none;
-border-radius:6px;
-background:#0077ff;
-color:white;
-cursor:pointer;
+.user {
+  background: #007aff;
+  color: white;
+  margin-left: auto;
 }
 
-button:hover{
-background:#005fd1;
+.ai {
+  background: #f1f1f1;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #007aff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #005fcc;
 }
