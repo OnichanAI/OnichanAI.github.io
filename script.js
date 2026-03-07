@@ -1,13 +1,4 @@
-const API_KEY = "AIzaSyAWUAW9uJ52T9fsxSeqlAn4660o7-Drv6Q";
-
-const chat = document.getElementById("chat");
-
-function addMessage(text, cls){
-const div = document.createElement("div");
-div.className = cls;
-div.textContent = text;
-chat.appendChild(div);
-}
+const WORKER_URL = "https://snowy-moon-ea6b.takkunmcjp.workers.dev/";
 
 async function send(){
 
@@ -16,13 +7,7 @@ const text = input.value;
 
 if(!text) return;
 
-addMessage("あなた: " + text,"user");
-
-input.value="";
-
-const res = await fetch(
-`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
-{
+const res = await fetch(WORKER_URL,{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -43,17 +28,14 @@ text:`あなたは妹キャラのAIです。
 }
 ]
 })
-}
-);
+});
 
 const data = await res.json();
-
-console.log(data);
 
 const reply =
 data.candidates?.[0]?.content?.parts?.[0]?.text ||
 "エラー";
 
-addMessage("AI: " + reply,"ai");
+console.log(reply);
 
 }
