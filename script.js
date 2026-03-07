@@ -1,11 +1,26 @@
-const WORKER_URL = "https://snowy-moon-ea6b.takkunmcjp.workers.dev/";
+const WORKER_URL = "https://snowy-moon-ea6b.takkunmcjp.workers.dev";
+
+const chat = document.getElementById("chat");
+
+function addMessage(text, cls){
+const div = document.createElement("div");
+div.className = cls;
+div.textContent = text;
+chat.appendChild(div);
+chat.scrollTop = chat.scrollHeight;
+}
 
 async function send(){
 
 const input = document.getElementById("message");
-const text = input.value;
+const text = input.value.trim();
 
 if(!text) return;
+
+addMessage("あなた: " + text,"user");
+input.value="";
+
+try{
 
 const res = await fetch(WORKER_URL,{
 method:"POST",
@@ -22,7 +37,7 @@ text:`あなたは妹キャラのAIです。
 優しく可愛い口調で話してください。通常と比べてひらがなを多めにしてください。
 例：「ねえねえおにいちゃん！おにいちゃんといっしょにお話ししたいんだ♡いっしょにお話ししよ！」
 
-ユーザー:${text}`
+ユーザー: ${text}`
 }
 ]
 }
@@ -32,10 +47,22 @@ text:`あなたは妹キャラのAIです。
 
 const data = await res.json();
 
-const reply =
-data.candidates?.[0]?.content?.parts?.[0]?.text ||
-"エラー";
+if(data.error){
+addMessage("エラー: " + data.error.message,"ai");
+return;
+}
 
-console.log(reply);
+const reply =
+data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+"返答を取得できませんでした";
+
+addMessage("AI: " + reply,"ai");
+
+}catch(e){
+
+addMessage("通信エラー","ai");
+console.error(e);
+
+}
 
 }
