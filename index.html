@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>おにいちゃんAI</title>
-<meta property="og:title" content="おにいちゃんAI">
-<meta property="og:description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://onichan-ai.f5.si">
-<meta property="og:image" content="https://onichan-ai.f5.si/ogp.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おにいちゃんAI</title>
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="おにいちゃんAI">
-<meta name="twitter:description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
-<meta name="twitter:image" content="https://onichan-ai.f5.si/ogp.png">
-<link rel="stylesheet" href="style.css">
+  <meta name="description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
+  <meta property="og:title" content="おにいちゃんAI">
+  <meta property="og:description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://onichan-ai.f5.si">
+  <meta property="og:image" content="https://onichan-ai.f5.si/ogp.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="おにいちゃんAI">
+  <meta name="twitter:description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
+  <meta name="twitter:image" content="https://onichan-ai.f5.si/ogp.png">
+
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-grid"></div>
 
-<div class="container">
+  <main class="container">
+    <section class="hero">
+      <div class="badge">AI Chat</div>
+      <h1>おにいちゃんAI</h1>
+      <p class="subtitle">Made by TakkunMC</p>
+      <p class="lead">妹っぽい雰囲気で、やさしくおしゃべりするチャット画面。</p>
+    </section>
 
-<h1>おにいちゃんAI</h1>
-<p class="subtitle">Made by TakkunMC</p>
+    <section class="card">
+      <header class="card-header">
+        <div class="avatar">妹</div>
+        <div class="header-text">
+          <h2>会話をはじめる</h2>
+          <p>Enterキーで送信できます</p>
+        </div>
+        <div class="status">
+          <span class="dot"></span>
+          <span>ONLINE</span>
+        </div>
+      </header>
 
-<div class="card">
+      <div id="chat" class="chat" aria-live="polite"></div>
 
-<div id="chat" class="chat"></div>
+      <div class="input-area">
+        <input id="message" placeholder="メッセージを入力..." autocomplete="off" />
+        <button id="send" type="button">送信</button>
+      </div>
+    </section>
+  </main>
 
-<div class="input-area">
-  <input id="message" placeholder="メッセージを入力..." />
-  <button id="send">送信</button>
-</div>
-
-</div>
-</div>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
