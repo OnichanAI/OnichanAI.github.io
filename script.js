@@ -6,42 +6,45 @@ const sendBtn = document.getElementById("send");
 
 let loading = false;
 
-function addMessage(text, cls) {
-
-  const div = document.createElement("div");
-  div.className = "message " + cls;
-  div.textContent = text;
-
-  chat.appendChild(div);
+function scrollToBottom() {
   chat.scrollTop = chat.scrollHeight;
+}
 
+function addMessage(text, cls, extraClass = "") {
+  const div = document.createElement("div");
+  div.className = `message ${cls} ${extraClass}`.trim();
+  div.textContent = text;
+  chat.appendChild(div);
+  scrollToBottom();
   return div;
 }
 
-async function send() {
+function setLoadingState(state) {
+  loading = state;
+  if (sendBtn) sendBtn.disabled = state;
+  if (input) input.disabled = state;
+}
 
+async function send() {
   if (loading) return;
 
   const text = input.value.trim();
   if (!text) return;
 
-  loading = true;
+  setLoadingState(true);
 
-  addMessage("あなた: " + text, "user");
+  addMessage(`あなた: ${text}`, "user");
   input.value = "";
 
-  const thinking = addMessage("妹が考え中...", "ai");
+  const thinking = addMessage("妹が考え中", "ai", "thinking");
 
   try {
-
     const res = await fetch(WORKER_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        message: text
-      })
+      body: JSON.stringify({ message: text })
     });
 
     if (!res.ok) {
@@ -49,39 +52,33 @@ async function send() {
     }
 
     const data = await res.json();
-
     thinking.remove();
 
     if (data.error) {
-      addMessage("エラー: " + data.error.message, "ai");
+      addMessage("エラー: " + (data.error.message || "不明なエラー"), "ai");
       return;
     }
 
-    addMessage("AI: " + data.reply, "ai");
-
+    addMessage("AI: " + (data.reply || "返答がありませんでした"), "ai");
   } catch (err) {
-
     console.error(err);
-    thinking.remove();
+    if (thinking.parentNode) thinking.remove();
     addMessage("通信エラーが発生しました", "ai");
-
   } finally {
-
-    loading = false;
-
+    setLoadingState(false);
+    input.focus();
   }
-
 }
 
-input.addEventListener("keydown", function(e) {
-
+input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
     send();
   }
-
 });
 
 if (sendBtn) {
   sendBtn.addEventListener("click", send);
 }
+
+input.focus();
