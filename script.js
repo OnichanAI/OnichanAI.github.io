@@ -364,7 +364,21 @@ async function speak(text) {
     });
 
     if (!response.ok) {
-      throw new Error(`TTS HTTP ${response.status}`);
+      let errorMessage = "";
+
+      try {
+        const errorData = await response.json();
+
+        errorMessage =
+          errorData?.error?.details ||
+          errorData?.error?.message ||
+          "";
+      } catch {
+      }
+
+      throw new Error(
+        `TTS HTTP ${response.status}${errorMessage ? `: ${errorMessage}` : ""}`
+      );
     }
 
     const blob = await response.blob();
