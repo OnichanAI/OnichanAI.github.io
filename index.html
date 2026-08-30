@@ -3,56 +3,361 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8b5cf6">
   <title>おにいちゃんAI</title>
 
-  <meta name="description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
+  <meta name="description" content="妹っぽいAIと自然に会話できるチャットアプリ">
   <meta property="og:title" content="おにいちゃんAI">
-  <meta property="og:description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
+  <meta property="og:description" content="妹っぽいAIと自然に会話できるチャットアプリ">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://onichan-ai.f5.si">
-  <meta property="og:image" content="https://onichan-ai.f5.si/ogp.png">
 
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="おにいちゃんAI">
-  <meta name="twitter:description" content="妹が可愛くおにいちゃんと呼んでくれるAIチャット">
-  <meta name="twitter:image" content="https://onichan-ai.f5.si/ogp.png">
+  <meta name="twitter:description" content="妹っぽいAIと自然に会話できるチャットアプリ">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <div class="bg-grid"></div>
+  <div class="background">
+    <div class="background-orb orb-purple"></div>
+    <div class="background-orb orb-blue"></div>
+    <div class="background-orb orb-pink"></div>
+    <div class="background-grid"></div>
+  </div>
 
-  <main class="container">
-    <section class="hero">
-      <div class="badge">AI Chat</div>
-      <h1>おにいちゃんAI</h1>
-      <p class="subtitle">Made by TakkunMC</p>
-      <p class="lead">妹っぽい雰囲気で、やさしくおしゃべりするチャット画面。</p>
-    </section>
-
-    <section class="card">
-      <header class="card-header">
-        <div class="avatar">妹</div>
-        <div class="header-text">
-          <h2>会話をはじめる</h2>
-          <p>Enterキーで送信できます</p>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">妹</div>
+        <div>
+          <div class="brand-name">おにいちゃんAI</div>
+          <div class="brand-status">
+            <span class="status-dot"></span>
+            ONLINE
+          </div>
         </div>
-        <div class="status">
-          <span class="dot"></span>
-          <span>ONLINE</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-button" id="clearChatButton" type="button" title="会話をクリア" aria-label="会話をクリア">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 6h18"></path>
+            <path d="M8 6V4h8v2"></path>
+            <path d="M19 6l-1 15H6L5 6"></path>
+            <path d="M10 11v6"></path>
+            <path d="M14 11v6"></path>
+          </svg>
+        </button>
+
+        <button class="icon-button" id="settingsButton" type="button" title="設定" aria-label="設定">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.05.05-1.41 1.41-.05-.05a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V20h-2v-.1a1.8 1.8 0 0 0-1.1-1.65 1.8 1.8 0 0 0-2 .36l-.05.05-1.41-1.41.05-.05a1.8 1.8 0 0 0 .36-2 1.8 1.8 0 0 0-1.65-1.1H6v-2h.1a1.8 1.8 0 0 0 1.65-1.1 1.8 1.8 0 0 0-.36-2l-.05-.05 1.41-1.41.05.05a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 11.9 6.9V7h2v-.1A1.8 1.8 0 0 0 15 5.25a1.8 1.8 0 0 0 2-.36l.05-.05 1.41 1.41-.05.05a1.8 1.8 0 0 0-.36 2A1.8 1.8 0 0 0 19.7 9.4h.1v2h-.1A1.8 1.8 0 0 0 18 12.5a1.8 1.8 0 0 0 1.4 2.5Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="welcome">
+        <div class="welcome-badge">
+          <span class="welcome-badge-icon">✦</span>
+          AI CHAT
         </div>
-      </header>
 
-      <div id="chat" class="chat" aria-live="polite"></div>
+        <h1>おにいちゃん、<br><span>今日は何話す？</span></h1>
 
-      <div class="input-area">
-        <input id="message" placeholder="メッセージを入力..." autocomplete="off" />
-        <button id="send" type="button">送信</button>
+        <p>
+          妹っぽいAIと、のんびり自然におしゃべりできます。
+          設定から声や話し方も自分好みに変更できます。
+        </p>
+
+        <div class="quick-actions">
+          <button class="quick-action" data-message="今日はどんなことを話そう？" type="button">
+            <span>💬</span>
+            雑談する
+          </button>
+
+          <button class="quick-action" data-message="今日あったことを聞いてほしい！" type="button">
+            <span>🌸</span>
+            今日の話
+          </button>
+
+          <button class="quick-action" data-message="ちょっと元気が出ること言って！" type="button">
+            <span>✨</span>
+            元気づけて
+          </button>
+        </div>
+      </section>
+
+      <section class="chat-card">
+        <div class="chat-header">
+          <div class="assistant-profile">
+            <div class="assistant-avatar">
+              <span>妹</span>
+              <div class="avatar-glow"></div>
+            </div>
+
+            <div class="assistant-info">
+              <strong id="assistantName">妹ちゃん</strong>
+              <span>あなたのおしゃべり相手</span>
+            </div>
+          </div>
+
+          <div class="chat-header-actions">
+            <button class="header-tool" id="stopVoiceButton" type="button" title="音声停止">
+              <svg viewBox="0 0 24 24">
+                <path d="M6 5h4v14H6z"></path>
+                <path d="M14 5h4v14h-4z"></path>
+              </svg>
+              <span>停止</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="chat" class="chat" aria-live="polite"></div>
+
+        <div class="composer">
+          <div class="composer-inner">
+            <textarea
+              id="message"
+              rows="1"
+              maxlength="2000"
+              placeholder="メッセージを入力..."
+              autocomplete="off"
+              spellcheck="false"
+            ></textarea>
+
+            <button id="send" class="send-button" type="button" aria-label="送信">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 2 11 13"></path>
+                <path d="m22 2-7 20-4-9-9-4Z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="composer-footer">
+            <span id="characterCount">0 / 2000</span>
+            <span>Enterで送信 · Shift + Enterで改行</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>Made by TakkunMC</span>
+        <span>おにいちゃんAI</span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal">
+    <section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="settings-header">
+        <div>
+          <span class="settings-eyebrow">CUSTOMIZE</span>
+          <h2 id="settingsTitle">設定</h2>
+          <p>おにいちゃんAIを自分好みに調整できます。</p>
+        </div>
+
+        <button class="close-button" id="closeSettingsButton" type="button" aria-label="閉じる">
+          <svg viewBox="0 0 24 24">
+            <path d="m6 6 12 12"></path>
+            <path d="m18 6-12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="settings-content">
+        <section class="settings-section">
+          <div class="section-title">
+            <strong>チャット</strong>
+            <span>会話画面</span>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Enterで送信</strong>
+              <span>Enterキーだけでメッセージを送信します。</span>
+            </div>
+            <label class="switch">
+              <input id="enterSendSetting" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>コンパクト表示</strong>
+              <span>メッセージ間の余白を小さくします。</span>
+            </div>
+            <label class="switch">
+              <input id="compactSetting" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+
+          <div class="setting-control">
+            <div class="setting-control-top">
+              <div>
+                <strong>文字サイズ</strong>
+                <span>チャット本文のサイズ</span>
+              </div>
+              <output id="fontSizeValue">15px</output>
+            </div>
+
+            <input id="fontSizeSetting" type="range" min="13" max="19" step="1">
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-title">
+            <strong>音声</strong>
+            <span>Aivis Cloud</span>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>音声を有効にする</strong>
+              <span>AIの返答をAivis Cloudで読み上げます。</span>
+            </div>
+            <label class="switch">
+              <input id="voiceEnabledSetting" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>自動再生</strong>
+              <span>AIの返答が届いたら自動で読み上げます。</span>
+            </div>
+            <label class="switch">
+              <input id="autoPlaySetting" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+
+          <div class="setting-control">
+            <div class="setting-control-top">
+              <div>
+                <strong>話速</strong>
+                <span>Aivis Cloudの話す速度</span>
+              </div>
+              <output id="speechRateValue">1.0x</output>
+            </div>
+            <input id="speechRateSetting" type="range" min="0.5" max="2" step="0.1">
+          </div>
+
+          <div class="setting-control">
+            <div class="setting-control-top">
+              <div>
+                <strong>感情表現</strong>
+                <span>感情の強さ</span>
+              </div>
+              <output id="emotionValue">1.0</output>
+            </div>
+            <input id="emotionSetting" type="range" min="0" max="2" step="0.1">
+          </div>
+
+          <div class="setting-control">
+            <div class="setting-control-top">
+              <div>
+                <strong>テンポ</strong>
+                <span>話し方の緩急</span>
+              </div>
+              <output id="tempoValue">1.0</output>
+            </div>
+            <input id="tempoSetting" type="range" min="0" max="2" step="0.1">
+          </div>
+
+          <div class="setting-control">
+            <div class="setting-control-top">
+              <div>
+                <strong>音量</strong>
+                <span>音声の音量</span>
+              </div>
+              <output id="volumeValue">1.0</output>
+            </div>
+            <input id="volumeSetting" type="range" min="0" max="2" step="0.1">
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-title">
+            <strong>AI</strong>
+            <span>会話スタイル</span>
+          </div>
+
+          <div class="setting-control">
+            <div>
+              <strong>AIの表示名</strong>
+              <span>チャット画面に表示する名前</span>
+            </div>
+            <input id="assistantNameSetting" class="text-setting" type="text" maxlength="30">
+          </div>
+
+          <div class="setting-control">
+            <div>
+              <strong>応答の長さ</strong>
+              <span>AIの返答の目安</span>
+            </div>
+
+            <select id="responseLengthSetting" class="select-setting">
+              <option value="short">短め</option>
+              <option value="normal">標準</option>
+              <option value="long">長め</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-title">
+            <strong>表示</strong>
+            <span>テーマ</span>
+          </div>
+
+          <div class="theme-grid">
+            <button class="theme-card" data-theme="dark" type="button">
+              <span class="theme-preview theme-dark"></span>
+              <strong>ダーク</strong>
+            </button>
+
+            <button class="theme-card" data-theme="midnight" type="button">
+              <span class="theme-preview theme-midnight"></span>
+              <strong>ミッドナイト</strong>
+            </button>
+
+            <button class="theme-card" data-theme="light" type="button">
+              <span class="theme-preview theme-light"></span>
+              <strong>ライト</strong>
+            </button>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-title">
+            <strong>データ</strong>
+            <span>ローカル保存</span>
+          </div>
+
+          <div class="data-buttons">
+            <button class="secondary-button" id="exportChatButton" type="button">会話をエクスポート</button>
+            <button class="secondary-button" id="importChatButton" type="button">会話をインポート</button>
+            <input id="importFile" type="file" accept=".json,application/json" hidden>
+          </div>
+        </section>
+      </div>
+
+      <div class="settings-footer">
+        <button class="danger-button" id="resetSettingsButton" type="button">設定を初期化</button>
+        <button class="primary-button" id="saveSettingsButton" type="button">完了</button>
       </div>
     </section>
-  </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
